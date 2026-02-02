@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>To my future wifey 💖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* 🚫 no scrolling */
+      background: #ffe6ee;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 390px; /* iPhone 14 Pro width */
+      height: 100%;
+      max-height: 844px; /* iPhone 14 Pro height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img.cover-img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      margin: 0 0 8px;
+      color: #ff4d6d;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 22px;
+      color: #333;
+      font-weight: normal;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    button {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 22px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ff4d6d;
+      color: #fff;
+      transition: transform 0.2s ease;
+    }
+
+    button.secondary {
+      background: #ffc2d1;
+      color: #333;
+      margin-top: 18px;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .result {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 💖 HEART CONFETTI */
+    .confetti-heart {
+      position: fixed;
+      font-size: 18px;
+      animation: floatUp 1.8s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.6);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- QUESTION -->
+    <div id="question">
+      <img src="images/1.jpg" alt="Cover Photo" class="cover-img">
+
+      <h1>Hi Audrey Shebabycakes!</h1>
+      <h2>Will you be my forever Valentine?</h2>
+
+      <div class="buttons">
+        <button onclick="showResult('yes')">Yes 💍</button>
+        <button onclick="showResult('opo')">Opo, pogi! 😘</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+      <img id="resultImg" src="" alt="Result Photo" class="cover-img">
+
+      <button class="secondary" onclick="goBack()">Back 🔙</button>
+    </div>
+  </div>
+
+  <script>
+    function showResult(choice) {
+      launchConfetti();
+
+      const img = document.getElementById("resultImg");
+      img.src = choice === "yes"
+        ? "images/2.jpg"
+        : "images/3.jpg";
+
+      document.getElementById("question").style.display = "none";
+      document.getElementById("result").style.display = "flex";
+    }
+
+    function goBack() {
+      document.getElementById("result").style.display = "none";
+      document.getElementById("question").style.display = "block";
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+        heart.className = "confetti-heart";
+        heart.innerText = "💖";
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight / 2 + "px";
+        heart.style.animationDuration = 1 + Math.random() + "s";
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1800);
+      }
+    }
+  </script>
+
+</body>
+</html>
